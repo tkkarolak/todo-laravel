@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+    php:
+        build:
+          context: ./
+          dockerfile: ./docker/php/Dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+
+    web:
+        build: ./docker/web
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        ports:
+            - 8000:80
+        links:
+            - php
+
+    mysql:
+        image: mysql:8.0.19
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+          MYSQL_DATABASE: todo
+          MYSQL_ROOT_PASSWORD: 123456
+          MYSQL_USER: todo
+          MYSQL_PASSWORD: todo
+        volumes:
+            - ./db-storage/mysql:/var/lib/mysql
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        restart: always
+        ports:
+            - 8081:80
+        environment:
+            PMA_HOST: mysql
