@@ -1,12 +1,13 @@
 # Schemat tabel
 
-## Tabela 1 - job_list
+## Tabela 1 - jobs
 
 | Kolumna     | Typ             | Opis                                 |
 | ----------- | --------------- | ------------------------------------ |
 | id          | unsigned bigint | Id zadania (PK)                      |
 | user_id     | unsigned bigint | Id użytkownika (FK)                  |
-| description | varchar         | Opis zadania                         |
+| title       | varchar         | tytuł zadania                        |
+| description | text            | Opis zadania                         |
 | priority_id | integer         | Priorytet zadania (FK)               |
 | deadline    | timestamp NULL  | Najpóżniejsza data wykonania zadania |
 | executed    | boolean         | Czy zadanie zostało wykonane         |
@@ -26,8 +27,8 @@
 
 ## Tabela 3 - priorities
 
-| Kolumna     | Typ             | Opis                           |
-| ----------- | --------------- | ------------------------------ |
-| id          | unsigned bigint | id priorytetu (PK)             |
-| priority    | integer         | liczbowe określenie priorytetu |
-| description | varchar         | opis priorytetu                |
+| Kolumna  | Typ             | Opis                           |
+| -------- | --------------- | ------------------------------ |
+| id       | unsigned bigint | id priorytetu (PK)             |
+| priority | integer         | liczbowe określenie priorytetu |
+| slug     | varchar         | opis priorytetu                |
