@@ -13,4 +13,9 @@ class Job extends Model
 
         return $this->belongsTo(Priority::class);
     }
+
+    public function tags() {
+
+        return $this->belongsToMany(Tags::class, 'job_tag', 'job_id', 'tag_id');
+    }
 }

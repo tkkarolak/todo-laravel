@@ -32,3 +32,11 @@
 | id       | unsigned bigint | id priorytetu (PK)             |
 | priority | integer         | liczbowe określenie priorytetu |
 | slug     | varchar         | opis priorytetu                |
+
+## Tabela 4 - tags
+
+| Kolumna | Typ            | Opis        |
+| ------- | -------------- | ----------- |
+| id (PK) | usigned bigint | id tagu     |
+| tag     | varchar        | nazwa tagu  |
+| color   | varchar        | kolor w hex |
