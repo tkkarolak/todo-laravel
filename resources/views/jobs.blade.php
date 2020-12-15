@@ -14,6 +14,7 @@
                         <th scope="col">@lang('jobs.priority')</th>
                         <th scope="col">@lang('jobs.deadline')</th>
                         <th scope="col">@lang('jobs.executed')</th>
+                        <th scope="col">@lang('jobs.tags')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,11 @@
                         <td>@lang('slug.'.$job->priority->slug)</td>
                         <td>{{$job->deadline}}</td>
                         <td>{{$job->executed}}</td>
+                        <td>
+                        @foreach ($job->tags as $tag)
+                            <span class="badge" style="background-color: {{$tag->color}};">@lang('tags.'.$tag->tag)</span>
+                        @endforeach
+                        </td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -22,7 +22,7 @@ class TagsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'color' => $this->faker->hexColor,
         ];
     }
 }
