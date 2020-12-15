@@ -21,5 +21,8 @@ Route::get('/', function () {
 
 Route::get('/helloworld', [HelloWorldController::class, 'showHelloWorld']);
 
-Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/list', [JobController::class, 'index']);
+
+Route::get('/jobs/calendar/{datetime?}', [JobController::class, 'calendar'])->name('jobs.calendar');
+
 
