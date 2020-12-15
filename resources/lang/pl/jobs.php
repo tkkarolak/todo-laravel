@@ -5,6 +5,7 @@ return [
 'title' => 'tytuł',
 'priority' => 'priorytet',
 'deadline' => 'ostateczny termin',
-'executed' => 'wykonano'
+'executed' => 'wykonano',
+'tags' => 'etykiety'
 
 ];

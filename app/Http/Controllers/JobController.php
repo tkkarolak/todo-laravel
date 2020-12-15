@@ -14,7 +14,7 @@ class JobController extends Controller
      */
     public function index(){
 
-        $jobs = Job::with('priority')->get();
+        $jobs = Job::with('priority')->with('tags')->get();
 
         return view('jobs', ['jobs' => $jobs]);
     }
