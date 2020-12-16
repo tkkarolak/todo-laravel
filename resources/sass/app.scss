@@ -22,3 +22,19 @@ body {
     background-color: white;
     border-radius: 30px;
 }
+
+.calendar-cell {
+    width:14.29%;
+    padding-bottom:14.29% !important;
+    position: relative;
+
+    .calendar-cell-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 5%;
+        width: 90%;
+        height: 90%;
+    }
+
+}

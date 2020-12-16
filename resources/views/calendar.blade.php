@@ -18,8 +18,8 @@
 
             <div class="row">
                 <div class="col">
-                    <table class="table">
-                        <thead>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
                             <tr>
                                 <th scope="col">Mon</th>
                                 <th scope="col">Tue</th>
@@ -35,7 +35,17 @@
                                 @while ($dt->month === $datetime->month)
                                     <tr>
                                         @for ($i=0; $i<7; $i++)
-                                            <td>{{$dt->weekday($i)->format('d')}}</td>
+                                            <td class="calendar-cell">
+                                                <div class="calendar-cell-content">
+                                                    {{$dt->weekday($i)->format('d')}}
+                                                    @php
+                                                        $temp = $events->where('deadline', $dt->weekday($i)->format('Y-m-d'));
+                                                    @endphp
+                                                    @foreach($temp->toArray() as $event)
+                                                        {{$event['title']}}
+                                                    @endforeach
+                                                </div>
+                                            </td>
                                         @endfor
                                     </tr>
                                     @php
@@ -43,12 +53,18 @@
                                         $dt->addWeek();
                                     @endphp
                                 @endwhile
-                                {{dd($dt)}}
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            {{-- <div class="row">
+                <ul>
+                @foreach ($events as $event)
+                <li>{{$event->title}} {{$event->deadline}}</li>
+                @endforeach
+                </ul>
+            </div> --}}
         </div>
     </div>
 @endsection

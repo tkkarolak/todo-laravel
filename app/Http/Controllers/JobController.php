@@ -13,22 +13,34 @@ class JobController extends Controller
      *
      * @return void
      */
-    public function index() {
+    public function index()
+    {
 
         $jobs = Job::with('priority')->with('tags')->get();
 
         return view('jobs', ['jobs' => $jobs]);
     }
 
-    public function calendar(Request $request) {
+    public function calendar(Request $request)
+    {
         if (is_null($request)) {
             $datetime = Carbon::now();
         } else {
             $datetime = Carbon::parse($request->datetime);
         }
 
-        return view('calendar', ['datetime' => $datetime]);
-   // dd($datetime);
+        $events = Job::whereYear('deadline', $datetime->year)
+            ->whereMonth('deadline', $datetime->month)
+            ->get();
 
+        $events = $events->map(function ($event) {
+            return [
+                'title' => $event->title,
+                'deadline' => substr($event->deadline, 0, 10),
+            ];
+        });
+// $events = $events->where('deadline', '2020-12-20');
+//        dd($events);
+        return view('calendar', ['datetime' => $datetime, 'events' => $events]);
     }
 }
