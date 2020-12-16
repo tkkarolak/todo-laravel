@@ -29,13 +29,13 @@ class JobSeeder extends Seeder
                 case 0:
                     break;
                 case 1:
-                    $tag_id = $tags->random()->id;
-                    $job->tags()->attach($tag_id);
+                    $tagId = $tags->random()->id;
+                    $job->tags()->attach($tagId);
                     break;
                 default:
-                    $tags_temp = $tags->random($rand);
-                    $tags_temp->each(function ($tag_temp, $key) use ($job) {
-                        $job->tags()->attach($tag_temp->id);
+                    $tagsTemp = $tags->random($rand);
+                    $tagsTemp->each(function ($tagTemp, $key) use ($job) {
+                        $job->tags()->attach($tagTemp->id);
                     });
                     break;
             }

@@ -18,16 +18,19 @@ class PrioritySeeder extends Seeder
             ->create([
                 'priority' => '1',
                 'slug' => 'high',
+                'color' => '#ff0000',
             ]);
         Priority::factory()
             ->create([
                 'priority' => '2',
                 'slug' => 'moderate',
+                'color' => '#ffff00',
             ]);
         Priority::factory()
             ->create([
                 'priority' => '3',
                 'slug' => 'low',
+                'color' => '#00ff00'
             ]);
     }
 }

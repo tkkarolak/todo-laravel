@@ -20,16 +20,16 @@
                     <tbody>
                     @foreach($jobs as $job)
                         <tr>
-                        <th scope="row">{{$job->id}}</th>
-                        {{-- <td>{{$job->user_id}}</td> --}}
+                        <th scope="row">{{ $job->id }}</th>
+                        {{-- <td>{{ $job->user_id }}</td> --}}
                         <td>{{$job->title}}</td>
-                        {{-- <td>{{$job->description}}</td> --}}
-                        <td>@lang('slug.'.$job->priority->slug)</td>
-                        <td>{{$job->deadline}}</td>
-                        <td>{{$job->executed}}</td>
+                        {{-- <td>{{ $job->description }}</td> --}}
+                        <td style="background-color: {{ $job->priority->color }}">@lang('slug.'.$job->priority->slug)</td>
+                        <td>{{ $job->deadline }}</td>
+                        <td>{{ $job->executed }}</td>
                         <td>
                         @foreach ($job->tags as $tag)
-                            <span class="badge" style="background-color: {{$tag->color}};">@lang('tags.'.$tag->tag)</span>
+                            <span class="badge" style="background-color: {{ $tag->color }};">@lang('tags.'.$tag->tag)</span>
                         @endforeach
                         </td>
                         </tr>
