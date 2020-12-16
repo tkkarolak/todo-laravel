@@ -4,12 +4,12 @@
     <div class="container-bg">
         <div class="container">
             <div class="row">
-                <div class="col"><h1>{{$datetime->month}} {{$datetime->year}}</h1></div>
+                <div class="col"><h1>{{ $datetime->month }} {{ $datetime->year }}</h1></div>
             </div>
             <div class="row">
-                <div class="col"><a href="{{route('jobs.calendar', ['datetime' => $datetime->copy()->now()])}}" class="btn btn-primary" role="button">Dzisiaj</a></div>
-                <div class="col"><a href="{{route('jobs.calendar', ['datetime' => $datetime->copy()->addMonth()])}}" class="btn btn-primary" role="button">+1 miesiac</a></div>
-                <div class="col"><a href="{{route('jobs.calendar', ['datetime' => $datetime->copy()->subMonth()])}}" class="btn btn-primary" role="button">-1 miesiac</a></div>
+                <div class="col"><a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->now()]) }}" class="btn btn-primary" role="button">Dzisiaj</a></div>
+                <div class="col"><a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->addMonth()]) }}" class="btn btn-primary" role="button">+1 miesiac</a></div>
+                <div class="col"><a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->subMonth()]) }}" class="btn btn-primary" role="button">-1 miesiac</a></div>
             </div>
 
             @php
@@ -21,13 +21,13 @@
                     <table class="table table-bordered">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">Mon</th>
-                                <th scope="col">Tue</th>
-                                <th scope="col">Wed</th>
-                                <th scope="col">Thu</th>
-                                <th scope="col">Fri</th>
-                                <th scope="col">Sat</th>
-                                <th scope="col">Sun</th>
+                                <th scope="col">@lang('calendar.Monday')</th>
+                                <th scope="col">@lang('calendar.Tuesday')</th>
+                                <th scope="col">@lang('calendar.Wednesday')</th>
+                                <th scope="col">@lang('calendar.Thursday')</th>
+                                <th scope="col">@lang('calendar.Friday')</th>
+                                <th scope="col">@lang('calendar.Saturday')</th>
+                                <th scope="col">@lang('calendar.Sunday')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,12 +37,12 @@
                                         @for ($i=0; $i<7; $i++)
                                             <td class="calendar-cell">
                                                 <div class="calendar-cell-content">
-                                                    {{$dt->weekday($i)->format('d')}}
+                                                    {{ $dt->weekday($i)->format('d') }}
                                                     @php
                                                         $temp = $events->where('deadline', $dt->weekday($i)->format('Y-m-d'));
                                                     @endphp
                                                     @foreach($temp->toArray() as $event)
-                                                        {{$event['title']}}
+                                                        {{ $event['title'] }}
                                                     @endforeach
                                                 </div>
                                             </td>
@@ -58,13 +58,6 @@
                     </table>
                 </div>
             </div>
-            {{-- <div class="row">
-                <ul>
-                @foreach ($events as $event)
-                <li>{{$event->title}} {{$event->deadline}}</li>
-                @endforeach
-                </ul>
-            </div> --}}
         </div>
     </div>
 @endsection

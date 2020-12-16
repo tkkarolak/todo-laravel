@@ -17,6 +17,7 @@ class CreatePrioritiesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('priority');
             $table->string('slug', 10);
+            $table->string('color');
         });
     }
 

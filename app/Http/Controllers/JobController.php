@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Priority;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -39,8 +40,7 @@ class JobController extends Controller
                 'deadline' => substr($event->deadline, 0, 10),
             ];
         });
-// $events = $events->where('deadline', '2020-12-20');
-//        dd($events);
+
         return view('calendar', ['datetime' => $datetime, 'events' => $events]);
     }
 }
