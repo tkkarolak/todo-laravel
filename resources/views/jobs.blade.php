@@ -24,7 +24,7 @@
                         {{-- <td>{{ $job->user_id }}</td> --}}
                         <td>{{$job->title}}</td>
                         {{-- <td>{{ $job->description }}</td> --}}
-                        <td style="background-color: {{ $job->priority->color }}">@lang('slug.'.$job->priority->slug)</td>
+                        <td style>@lang('slug.'.$job->priority->slug)</td>
                         <td>{{ $job->deadline }}</td>
                         <td>{{ $job->executed }}</td>
                         <td>
