@@ -32,12 +32,14 @@ class JobController extends Controller
 
         $events = Job::whereYear('deadline', $datetime->year)
             ->whereMonth('deadline', $datetime->month)
+            ->with('priority')
             ->get();
 
         $events = $events->map(function ($event) {
             return [
                 'title' => $event->title,
                 'deadline' => substr($event->deadline, 0, 10),
+                'slug' => $event->priority->slug,
             ];
         });
 

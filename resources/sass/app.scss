@@ -27,14 +27,42 @@ body {
     width:14.29%;
     padding-bottom:14.29% !important;
     position: relative;
+    overflow-y: auto;
 
     .calendar-cell-content {
         position: absolute;
         top: 0;
         left: 0;
         padding: 5%;
-        width: 90%;
-        height: 90%;
+        width: 100%;
+        height: 100%;
+
+        .badge {
+            white-space: unset;
+            margin-top: 5px;
+
+            &.priority-high {
+                background-color: #f44336;
+                color: #fff;
+            }
+
+            &.priority-moderate {
+                background-color: #FDD835;
+                color: #000;
+            }
+
+            &.priority-low {
+                background-color: #4CAF50;
+                color: #fff;
+            }
+        }
+
+
+
+        .calendar-cell-content-day {
+            color: lightgrey;
+        }
     }
 
 }
+
