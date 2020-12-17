@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Priority;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -44,5 +45,19 @@ class JobController extends Controller
         });
 
         return view('calendar', ['datetime' => $datetime, 'events' => $events]);
+    }
+
+    public function show (Request $request)
+    {
+        $id = $request->id;
+
+        $job = Job::where('id', $id)
+        ->with('priority')
+        ->with('tags')
+        ->first();
+        // dd($id);
+        // dd($job);
+
+        return view('details', ['id' => $id, 'job' => $job]);
     }
 }

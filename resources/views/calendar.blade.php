@@ -46,7 +46,6 @@
                                                         $temp = $events->where('deadline', $dt->weekday($i)->format('Y-m-d'));
                                                     @endphp
                                                     @foreach($temp->toArray() as $event)
-                                                        {{-- <span style="background-color: {{ $event['color'] }}">{{ $event['title'] }}</span> --}}
                                                         <span class="badge priority-{{ $event['slug'] }}">{{ $event['title'] }}</span>
                                                     @endforeach
                                                 </div>

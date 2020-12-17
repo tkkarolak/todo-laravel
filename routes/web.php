@@ -25,4 +25,7 @@ Route::get('/jobs/list', [JobController::class, 'index']);
 
 Route::get('/jobs/calendar/{datetime?}', [JobController::class, 'calendar'])->name('jobs.calendar');
 
+Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.details');
+
+
 
