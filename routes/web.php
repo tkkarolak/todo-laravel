@@ -25,7 +25,11 @@ Route::get('/jobs/list', [JobController::class, 'index']);
 
 Route::get('/jobs/calendar/{datetime?}', [JobController::class, 'calendar'])->name('jobs.calendar');
 
+Route::get('/jobs/create', [JobController::class, 'create']);
+
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.details');
+
+Route::get('/jobs/{id}/edit', [JobController::class, 'edit']);
 
 
 

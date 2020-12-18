@@ -18,7 +18,8 @@ body {
 }
 
 .container-bg {
-    margin: 0px 10% 10% 10%;
+    margin: 0 10% 10% 10%;
+    padding: 15px;
     background-color: white;
     border-radius: 30px;
 }
@@ -37,32 +38,34 @@ body {
         width: 100%;
         height: 100%;
 
-        .badge {
-            white-space: unset;
-            margin-top: 5px;
-
-            &.priority-high {
-                background-color: #f44336;
-                color: #fff;
-            }
-
-            &.priority-moderate {
-                background-color: #FDD835;
-                color: #000;
-            }
-
-            &.priority-low {
-                background-color: #4CAF50;
-                color: #fff;
-            }
-        }
-
-
-
         .calendar-cell-content-day {
             color: lightgrey;
         }
     }
 
+}
+
+.badge {
+    white-space: unset;
+    margin-top: 5px;
+
+    &.priority-high {
+        background-color: #f44336;
+        color: #fff;
+    }
+
+    &.priority-moderate {
+        background-color: #FDD835;
+        color: #000;
+    }
+
+    &.priority-low {
+        background-color: #4CAF50;
+        color: #fff;
+    }
+}
+
+.plain {
+    text-decoration: none;
 }
 

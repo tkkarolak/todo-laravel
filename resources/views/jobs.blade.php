@@ -22,7 +22,7 @@
                         <tr>
                         <th scope="row">{{ $job->id }}</th>
                         {{-- <td>{{ $job->user_id }}</td> --}}
-                        <td>{{$job->title}}</td>
+                        <td><a href="{{ route('jobs.details',['id' => $job->id])}}" class="plain">{{$job->title}}</a></td>
                         {{-- <td>{{ $job->description }}</td> --}}
                         <td style>@lang('slug.'.$job->priority->slug)</td>
                         <td>{{ $job->deadline }}</td>
