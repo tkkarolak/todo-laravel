@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Priority;
+use App\Models\Tags;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class JobController extends Controller
                 'title' => $event->title,
                 'deadline' => substr($event->deadline, 0, 10),
                 'slug' => $event->priority->slug,
+                'id' => $event->id,
             ];
         });
 
@@ -55,9 +57,32 @@ class JobController extends Controller
         ->with('priority')
         ->with('tags')
         ->first();
-        // dd($id);
-        // dd($job);
 
-        return view('details', ['id' => $id, 'job' => $job]);
+        return view('show-job', ['id' => $id, 'job' => $job]);
+    }
+
+    public function create() {
+
+
+        return view('create-job');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => ['required', 'max:50'],
+            'description' => ['required'],
+            'priority' => ['required'],
+            'deadline' => ['after_or_equal:today'],
+            'executed' => ['required'],
+
+        ]);
+
+    }
+
+    public function edit() {
+
+        return view('edit-job');
+
     }
 }

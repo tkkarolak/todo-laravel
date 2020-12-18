@@ -11602,7 +11602,8 @@ body {
 }
 
 .container-bg {
-  margin: 0px 10% 10% 10%;
+  margin: 0 10% 10% 10%;
+  padding: 15px;
   background-color: white;
   border-radius: 30px;
 }
@@ -11623,27 +11624,31 @@ body {
   height: 100%;
 }
 
-.calendar-cell .calendar-cell-content .badge {
+.calendar-cell .calendar-cell-content .calendar-cell-content-day {
+  color: lightgrey;
+}
+
+.badge {
   white-space: unset;
   margin-top: 5px;
 }
 
-.calendar-cell .calendar-cell-content .badge.priority-high {
+.badge.priority-high {
   background-color: #f44336;
   color: #fff;
 }
 
-.calendar-cell .calendar-cell-content .badge.priority-moderate {
+.badge.priority-moderate {
   background-color: #FDD835;
   color: #000;
 }
 
-.calendar-cell .calendar-cell-content .badge.priority-low {
+.badge.priority-low {
   background-color: #4CAF50;
   color: #fff;
 }
 
-.calendar-cell .calendar-cell-content .calendar-cell-content-day {
-  color: lightgrey;
+.plain {
+  text-decoration: none;
 }
 

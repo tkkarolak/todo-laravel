@@ -6,6 +6,8 @@ return [
 'priority' => 'priorytet',
 'deadline' => 'ostateczny termin',
 'executed' => 'wykonano',
-'tags' => 'etykiety'
+'tags' => 'etykiety',
+'Jobs description' => 'Opis zadania',
+'Details' => 'Szczegóły',
 
 ];

@@ -1,6 +1,6 @@
 @extends('layouts.default', ['title' => 'Calendar'])
 
-    @section('content')
+@section('content')
     <div class="container-bg">
         <div class="container">
             <div class="row">
@@ -46,7 +46,7 @@
                                                         $temp = $events->where('deadline', $dt->weekday($i)->format('Y-m-d'));
                                                     @endphp
                                                     @foreach($temp->toArray() as $event)
-                                                        <span class="badge priority-{{ $event['slug'] }}">{{ $event['title'] }}</span>
+                                                        <span class="badge priority-{{ $event['slug'] }}"><a href="{{ route('jobs.details', ['id' => $event['id']]) }}" class="plain">{{ $event['title'] }}</a></span>
                                                     @endforeach
                                                 </div>
                                             </td>
