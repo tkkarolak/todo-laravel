@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use App\Models\Job;
 use App\Models\Priority;
 use App\Models\Tags;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -70,28 +72,40 @@ class JobController extends Controller
         return view('create-job', ['priorities' => $priorities, 'tags' => $tags]);
     }
 
-    public function store(Request $request)
+    public function store(JobRequest $jobRequest)
     {
-        $validated = $request->validate([
-            'title' => ['required', 'max:50'],
-            'description' => ['required'],
-            'priority_id' => ['required'],
-            'deadline' => ['after_or_equal:today'],
-
-        ]);
-
-        $data = collect($validated);
+        $data = collect($jobRequest->validated());
         $data->put('user_id', 1);
         $data->put('executed', false);
 
-        Job::create($data->toArray());
+        try {
+            Job::create($data->toArray());
 
-        return redirect()->back();
+        } catch(Exception $e) {
+
+            return redirect()->back()->with('error', 'Blad!');
+        }
+
+        return redirect('jobs/list')->with('success', 'Utworzono zadanie!');
     }
 
-    public function edit() {
+    public function edit(Request $request) {
 
-        return view('edit-job');
+        $id = $request->id;
+
+        $job = Job::where('id', $id)
+        ->with('priority')
+        ->with('tags')
+        ->first();
+
+        $priorities = Priority::all();
+        $tags = Tags::all();
+
+        return view('edit-job',['id' => $id, 'job' => $job, 'priorities' => $priorities, 'tags' => $tags]);
+
+    }
+
+    public function update(JobRequest $jobRequest) {
 
     }
 }
