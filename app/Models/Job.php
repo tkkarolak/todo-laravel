@@ -9,6 +9,15 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'deadline',
+        'user_id',
+        'executed',
+        'priority_id',
+    ];
+
     public function priority() {
 
         return $this->belongsTo(Priority::class);

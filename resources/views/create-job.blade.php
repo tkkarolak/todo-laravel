@@ -27,8 +27,8 @@
                         </div>
 
                         <div class="row">
-                            <label for="priority" class="form-label">Priority:</label>
-                            <select class="form-select" id="priority" name="priority">
+                            <label for="priority_id" class="form-label">Priority:</label>
+                            <select class="form-select" id="priority_id" name="priority_id">
                                 <option value="">Wybierz...</option>
                                 @foreach ($priorities as $priority)
                                     @if (old('priority') == $priority->id)

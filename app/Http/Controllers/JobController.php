@@ -72,14 +72,19 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => ['required', 'max:50'],
             'description' => ['required'],
-            // 'priority.slug' => ['required'],
+            'priority_id' => ['required'],
             'deadline' => ['after_or_equal:today'],
-            // 'executed' => ['required'],
 
         ]);
+
+        $data = collect($validated);
+        $data->put('user_id', 1);
+        $data->put('executed', false);
+
+        Job::create($data->toArray());
 
         return redirect()->back();
     }
