@@ -63,8 +63,11 @@ class JobController extends Controller
 
     public function create() {
 
+        $priorities = Priority::all();
+        $tags = Tags::all();
 
-        return view('create-job');
+
+        return view('create-job', ['priorities' => $priorities, 'tags' => $tags]);
     }
 
     public function store(Request $request)
@@ -72,12 +75,13 @@ class JobController extends Controller
         $request->validate([
             'title' => ['required', 'max:50'],
             'description' => ['required'],
-            'priority' => ['required'],
+            // 'priority.slug' => ['required'],
             'deadline' => ['after_or_equal:today'],
-            'executed' => ['required'],
+            // 'executed' => ['required'],
 
         ]);
 
+        return redirect()->back();
     }
 
     public function edit() {
