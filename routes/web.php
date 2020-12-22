@@ -27,6 +27,8 @@ Route::get('/jobs/calendar/{datetime?}', [JobController::class, 'calendar'])->na
 
 Route::get('/jobs/create', [JobController::class, 'create']);
 
+Route::post('/jobs/create', [JobController::class, 'store']);
+
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.details');
 
 Route::get('/jobs/{id}/edit', [JobController::class, 'edit']);

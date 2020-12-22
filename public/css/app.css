@@ -11648,7 +11648,20 @@ body {
   color: #fff;
 }
 
-.plain {
+a {
   text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  opacity: 0.5;
+  text-decoration: none;
+  color: #000;
+}
+
+a:active {
+  opacity: 1;
+  text-decoration: none;
+  color: #000;
 }
 

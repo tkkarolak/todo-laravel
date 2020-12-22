@@ -9,36 +9,45 @@
                         @csrf
 
                         <div class="row">
-                            <label for="title">Title: </label>
-                            <input type="text" name="title" id="title" required>
+                            <label for="title" class="form-label">Title: </label>
+                            <input type="text" class="form-control is-invalid" name="title" id="title" value="{{ old('title')}}">
+
+                            @error('title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="row">
-                            <label for="description">Description: </label>
-                            <textarea type="text" name="description" id="description" required></textarea>
-                        </div>
+                            <label for="description" class="form-label">Description: </label>
+                            <textarea type="text" class="form-control is-invalid" name="description" id="description"> {{ old('description')}}</textarea>
 
-                        <div class="form-group">
-                            Priority:<br>
-                            <input type="radio" name="priority" id="priority1">
-                            <label for="priority1">High</label><br>
-                            <input type="radio" name="priority" id="priority2">
-                            <label for="priority2">Moderate</label><br>
-                            <input type="radio" name="priority" id="priority3">
-                            <label for="priority3">Low</label>
+                            @error('description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="row">
-                            <label for="deadline">Deadline: </label>
-                            <input type="datetime-local" name="deadline" id="deadline">
+                            <label for="priority" class="form-label">Priority:</label>
+                            <select class="form-select" id="priority" name="priority">
+                                <option value="">Wybierz...</option>
+                                @foreach ($priorities as $priority)
+                                    @if (old('priority') == $priority->id)
+                                        <option selected value="{{ $priority->id }}">{{ $priority->slug }}</option>
+                                    @else
+                                        <option value="{{ $priority->id }}">{{ $priority->slug }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="executed">Executed: </label>
-                            <input type="checkbox" name="executed" id="executed">
-                        </div>
+                        <div class="row">
+                            <label for="deadline" class="form-label">Deadline: </label>
+                            <input type="datetime-local" name="deadline" id="deadline" class="form-input" value="{{ old('deadline')}}">
 
-                        {{-- <div class="form-group"> --}}
+                            @error('deadline')
+                                <div>{{ $message }}</div>
+                            @enderror
+                        </div>
 
                         <div>
                             <button type="submit" class="btn btn-primary">Zapisz</button>
