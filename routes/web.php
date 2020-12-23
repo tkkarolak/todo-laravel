@@ -32,6 +32,10 @@ Route::post('/jobs/create', [JobController::class, 'store']);
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.details');
 
 Route::get('/jobs/{id}/edit', [JobController::class, 'edit']);
+Route::patch('/jobs/{id}/edit', [JobController::class, 'update']);
+
+
+
 
 
 
