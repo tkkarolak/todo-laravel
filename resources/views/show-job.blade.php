@@ -38,8 +38,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col d-flex justify-content-start">
-                <a href="{{ url() -> previous() }}" class="btn btn-primary" role="button">Wstecz</a>
+            <div>
+                <form action="" method="POST" class="col d-flex justify-content-between">
+                    @csrf
+                    @method('DELETE')
+
+                    <a href="{{ url() -> previous() }}" class="btn btn-primary" role="button">Wstecz</a>
+                    <button type="submit" class="btn btn-danger">USUŃ</button>
+                </form>
             </div>
         </div>
     </div>
