@@ -105,7 +105,22 @@ class JobController extends Controller
 
     }
 
-    public function update(JobRequest $jobRequest) {
+    public function update(Request $request, JobRequest $jobRequest) {
+
+        $id = $request->id;
+
+        try {
+
+            Job::where('id', $id)
+             ->update($jobRequest->validated());
+
+
+        } catch(Exception $e) {
+
+            return redirect()->back()->with('error', 'Blad!');
+        }
+
+        return redirect('jobs/list')->with('success', 'Edytowano zadanie!');
 
     }
 }

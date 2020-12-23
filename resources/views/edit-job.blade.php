@@ -11,6 +11,7 @@
         <div class="row">
             <div class="col">
                 <form action="" method="POST">
+                    @method('PATCH')
                     @csrf
 
                     <div class="row">
