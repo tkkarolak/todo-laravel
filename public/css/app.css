@@ -11665,3 +11665,8 @@ a:active {
   color: #000;
 }
 
+.btn-header {
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
