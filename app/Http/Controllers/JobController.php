@@ -123,4 +123,21 @@ class JobController extends Controller
         return redirect('jobs/list')->with('success', 'Edytowano zadanie!');
 
     }
+
+    public function destroy(Request $request) {
+
+        $id = $request->id;
+
+        try {
+
+            Job::destroy($id);
+
+        } catch(Exception $e) {
+
+            return redirect()->back()->with('error', 'Blad!');
+        }
+
+        return redirect('jobs/list')->with('success', 'Usunieto zadanie!');
+
+    }
 }

@@ -3,12 +3,11 @@
 @section('content')
     <div class="container-bg">
         <div class="container">
-            <div class="container">
-                @if (session('error'))
-                    <div class="alert alert-warning" role="alert">
-                        {{session('error')}}
-                    </div>
-                @endif
+            @if (session('error'))
+                <div class="alert alert-warning" role="alert">
+                    {{session('error')}}
+                </div>
+            @endif
             <div class="row">
                 <div class="col">
                     <form action="" method="POST">
