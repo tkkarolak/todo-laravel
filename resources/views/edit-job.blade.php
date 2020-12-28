@@ -55,7 +55,8 @@
                         @enderror
                     </div>
 
-                    <div>
+                    <div class="d-flex justify-content-between mt-1">
+                        <a href="{{ route('jobs.details', ['id' => $job]) }}" class="btn btn-primary" role="button">Wstecz</a>
                         <button type="submit" class="btn btn-primary">Zapisz</button>
                     </div>
                 </form>
