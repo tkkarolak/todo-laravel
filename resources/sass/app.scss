@@ -7,11 +7,16 @@ body {
     background-repeat: repeat;
 }
 
-// header {
-//     margin: 10% 10% 10% 0px;
-//     background-color: white;
-//     border-radius: 30px 30px 0px 0px;
-// }
+    .logo {
+        // background: url('../images/todo_logo.jpg');
+        max-height: 100px;
+        height: auto;
+        width: auto;
+        border-radius: 30%;
+        // background-size: contain;
+        // background-repeat: no-repeat;
+        // background-position: center;
+    }
 
 .site-title {
     font-size: 50px;

@@ -11597,6 +11597,13 @@ body {
   background-repeat: repeat;
 }
 
+.logo {
+  max-height: 100px;
+  height: auto;
+  width: auto;
+  border-radius: 30%;
+}
+
 .site-title {
   font-size: 50px;
 }
