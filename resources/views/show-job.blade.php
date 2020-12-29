@@ -51,9 +51,8 @@
                           <li><a class="dropdown-item" href="{{ route('jobs.calendar', ['datetime' => $job->deadline]) }}">Kalendarz</a></li>
                           <li><a class="dropdown-item" href="{{ route('jobs.list') }}">Lista</a></li>
                         </ul>
-                      </div>
+                    </div>
 
-                    {{-- <a href="{{ route('jobs.calendar', ['datetime' => $job->deadline]) }}" class="btn btn-primary" role="button">Wstecz</a> --}}
                     <a href="{{ route('jobs.edit', ['id' => $job]) }}" class="btn btn-primary ms-auto me-1" role="button">Edytuj</a>
                     <button type="submit" class="btn btn-danger">USUŃ</button>
                 </form>
