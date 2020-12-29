@@ -4,12 +4,17 @@
         <div class="container-bg">
         <div class="container">
             <div class="row">
-                <nav aria-label="breadcrumb" class="d-flex align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">List</li>
-                        <li class="breadcrumb-item"><a href="{{ route('jobs.calendar') }}">Calendar</a></li>
-                    </ol>
-                </nav>
+                <div class="col-md-11 d-flex align-self-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">List</li>
+                            <li class="breadcrumb-item"><a href="{{ route('jobs.calendar') }}">Calendar</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-md-1 d-flex justify-content-end">
+                    <a href="{{ route('jobs.create') }}" class="btn-add-job" role="button">+</a>
+                </div>
             </div>
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
