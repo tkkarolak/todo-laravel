@@ -112,7 +112,7 @@ class JobController extends Controller
         try {
 
             Job::where('id', $id)
-             ->update($jobRequest->validated());
+            ->update($jobRequest->validated());
 
 
         } catch(Exception $e) {
@@ -121,6 +121,27 @@ class JobController extends Controller
         }
 
         return redirect('jobs/list')->with('success', 'Edytowano zadanie!');
+
+    }
+
+    public function accept(Request $request) {
+
+        $id = $request->id;
+        $job = Job::where('id', $id)->first();
+
+        $executed = $job->executed;
+
+        if ($executed == 0) {
+            $executed = 1;
+        }
+        else {
+            $executed = 0;
+        }
+
+        Job::where('id', $id)
+        ->update(['executed' => $executed]);
+
+        return redirect('jobs/list');
 
     }
 
