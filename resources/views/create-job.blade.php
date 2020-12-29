@@ -45,7 +45,7 @@
                             </select>
                         </div>
 
-                        <div class="row">
+                        <div class="row mb-3">
                             <label for="deadline" class="form-label">Deadline: </label>
                             <input type="datetime-local" name="deadline" id="deadline" class="form-input" value="{{ old('deadline')}}">
 
@@ -54,8 +54,18 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">Zapisz</button>
+
+                            <div class="btn-group d-flex align-self-center" role="group">
+                                <button id="btnGroupDrop" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Wstecz
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop">
+                                    <li><a class="dropdown-item" href="{{ route('jobs.calendar') }}">Kalendarz</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('jobs.list') }}">Lista</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </form>
                 </div>
