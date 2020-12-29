@@ -3,7 +3,7 @@
         @section('content')
         <div class="container-bg">
         <div class="container">
-            <div class="row">
+            <div class="row mb-1">
                 <div class="col-md-11 d-flex align-self-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -28,11 +28,10 @@
                         <th scope="col">Id</th>
                         {{-- <th scope="col">User_id</th> --}}
                         <th scope="col">@lang('jobs.title')</th>
-                        {{-- <th scope="col">Description</th> --}}
                         <th scope="col">@lang('jobs.priority')</th>
                         <th scope="col">@lang('jobs.deadline')</th>
-                        <th scope="col">@lang('jobs.executed')</th>
                         <th scope="col">@lang('jobs.tags')</th>
+                        <th scope="col">@lang('jobs.executed')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,15 +39,16 @@
                         <tr>
                         <th scope="row">{{ $job->id }}</th>
                         {{-- <td>{{ $job->user_id }}</td> --}}
-                        <td><a href="{{ route('jobs.details',['id' => $job->id])}}">{{$job->title}}</a></td>
-                        {{-- <td>{{ $job->description }}</td> --}}
+                        <td><a href="{{ route('jobs.details',['id' => $job->id]) }}">{{$job->title}}</a></td>
                         <td style>@lang('slug.'.$job->priority->slug)</td>
                         <td>{{ $job->deadline }}</td>
-                        <td>{{ $job->executed }}</td>
                         <td>
-                        @foreach ($job->tags as $tag)
-                            <span class="badge" style="background-color: {{ $tag->color }};">@lang('tags.'.$tag->tag)</span>
-                        @endforeach
+                            @foreach ($job->tags as $tag)
+                                <span class="badge" style="background-color: {{ $tag->color }};">@lang('tags.'.$tag->tag)</span>
+                            @endforeach
+                        </td>
+                        <td>
+                            <a href="{{ route('jobs.accept',['id' => $job->id]) }}"><span class="mdi @if ($job->executed == 1)mdi-checkbox-marked-outline @else mdi-checkbox-blank-outline @endif"></span></a>
                         </td>
                         </tr>
                     @endforeach

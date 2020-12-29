@@ -34,4 +34,6 @@ Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.details');
 Route::get('/jobs/{id}/edit', [JobController::class, 'edit'])->name('jobs.edit');
 Route::patch('/jobs/{id}/edit', [JobController::class, 'update']);
 
+Route::get('jobs/{id}/accept', [JobController::class, 'accept'])->name('jobs.accept');
+
 Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('jobs.delete');
