@@ -3,6 +3,14 @@
         @section('content')
         <div class="container-bg">
         <div class="container">
+            <div class="row">
+                <nav aria-label="breadcrumb" class="d-flex align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">List</li>
+                        <li class="breadcrumb-item"><a href="{{ route('jobs.calendar') }}">Calendar</a></li>
+                    </ol>
+                </nav>
+            </div>
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     {{session('success')}}

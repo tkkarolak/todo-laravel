@@ -36,7 +36,7 @@
                             <select class="form-select" id="priority_id" name="priority_id">
                                 <option value="">Wybierz...</option>
                                 @foreach ($priorities as $priority)
-                                    @if (old('priority') == $priority->id)
+                                    @if (old('priority_id', $priority->id) == $priority->id)
                                         <option selected value="{{ $priority->id }}">{{ $priority->slug }}</option>
                                     @else
                                         <option value="{{ $priority->id }}">{{ $priority->slug }}</option>
