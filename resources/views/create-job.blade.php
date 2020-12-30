@@ -36,7 +36,7 @@
                             <select class="form-select" id="priority_id" name="priority_id">
                                 <option value="">Wybierz...</option>
                                 @foreach ($priorities as $priority)
-                                    @if (old('priority_id', $priority->id) == $priority->id)
+                                    @if (old('priority_id') == $priority->id)
                                         <option selected value="{{ $priority->id }}">{{ $priority->slug }}</option>
                                     @else
                                         <option value="{{ $priority->id }}">{{ $priority->slug }}</option>
@@ -52,6 +52,24 @@
                             @error('deadline')
                                 <div>{{ $message }}</div>
                             @enderror
+                        </div>
+
+                        <div class="mb-1">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Tags:
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach ($tags as $tag)
+                                        <li>
+                                            <input type="checkbox" class="form-input" id="{{ $tag->tag }}" name="tag[]" value="{{ $tag->id }}">
+                                            <span class="badge" style="background-color: {{ $tag->color }};">
+                                                <label for="{{ $tag->tag }}" class="form-label">{{ $tag->tag }}</label>
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                              </div>
                         </div>
 
                         <div class="d-flex justify-content-between">

@@ -75,11 +75,15 @@ class JobController extends Controller
     public function store(JobRequest $jobRequest)
     {
         $data = collect($jobRequest->validated());
+
+        dd($jobRequest);
+
+
         $data->put('user_id', 1);
         $data->put('executed', false);
 
         try {
-            Job::create($data->toArray());
+            Job::create($data->toArray())->tags()->attach($jobRequest->tag);
 
         } catch(Exception $e) {
 
@@ -109,10 +113,13 @@ class JobController extends Controller
 
         $id = $request->id;
 
+        dd($jobRequest);
+
         try {
 
-            Job::where('id', $id)
-            ->update($jobRequest->validated());
+            $updatedjob = Job::where('id', $id)->first();
+            $updatedjob->update($jobRequest->validated());
+            $updatedjob->tags()->sync($jobRequest->tag);
 
 
         } catch(Exception $e) {
@@ -154,6 +161,8 @@ class JobController extends Controller
             Job::destroy($id);
 
         } catch(Exception $e) {
+
+            // dd($e);
 
             return redirect()->back()->with('error', 'Blad!');
         }
