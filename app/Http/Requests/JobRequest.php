@@ -28,6 +28,7 @@ class JobRequest extends FormRequest
             'description' => ['required'],
             'priority_id' => ['required'],
             'deadline' => ['after_or_equal:today'],
+            'tag' => ['nullable'],
         ];
     }
 }

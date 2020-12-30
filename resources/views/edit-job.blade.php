@@ -46,13 +46,44 @@
                         </select>
                     </div>
 
-                    <div class="row">
+                    <div class="row mb-1">
                         <label for="deadline" class="form-label">Deadline: </label>
-                        <input type="datetime-local" name="deadline" id="deadline" class="form-input" value="{{ old('deadline', Carbon\Carbon::parse($job->deadline)->format('Y-m-d\TH:i'))}}">
+                        <input type="datetime-local" name="deadline" id="deadline" class="form-input" value="{{ old('deadline', Carbon\Carbon::parse($job->deadline)->format('Y-m-d\TH:i')) }}">
 
                         @error('deadline')
                             <div>{{ $message }}</div>
                         @enderror
+                    </div>
+
+                    <div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                              Tags:
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @foreach ($tags as $tag)
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" id="{{ $tag->tag }}" name="tag[]" value="{{ $tag->id }}"
+                                            @if (old('tag') === null)
+                                                @php
+                                                    $ids = $job->tags->pluck('id');
+                                                @endphp
+
+                                                @foreach ($ids as $jobtag_id)
+                                                    {{ $tag->id == $jobtag_id ? 'checked' : '' }}
+                                                @endforeach
+
+                                            @else
+                                                {{ (is_array(old('tag')) && in_array($tag->id, old('tag'))) ? 'checked' : '' }}
+                                            @endif
+                                        />
+                                        <span class="badge" style="background-color: {{ $tag->color }};">
+                                            <label for="{{ $tag->tag }}" class="form-label">{{ $tag->tag }}</label>
+                                        </span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                          </div>
                     </div>
 
                     <div class="d-flex justify-content-between mt-1">
