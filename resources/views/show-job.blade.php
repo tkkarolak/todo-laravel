@@ -3,6 +3,11 @@
 @section('content')
 <div class="container-bg">
     <div class="container">
+        @if (session('error'))
+        <div class="alert alert-warning" role="alert">
+            {{session('error')}}
+        </div>
+        @endif
         <div class="row">
             <div class="col-10">
                 <h1>{{ $job->title }}</h1>
