@@ -15,7 +15,7 @@
                     @csrf
 
                     <div class="row">
-                        <label for="title" class="form-label">Title: </label>
+                        <label for="title" class="form-label">@lang('jobs.Title'): </label>
                         <input type="text" class="form-control is-invalid" name="title" id="title" value="{{ old('title', $job->title)}}">
 
                         @error('title')
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="row">
-                        <label for="description" class="form-label">Description: </label>
+                        <label for="description" class="form-label">@lang('jobs.Description'): </label>
                         <textarea type="text" class="form-control is-invalid" name="description" id="description"> {{ old('description', $job->description)}}</textarea>
 
                         @error('description')
@@ -33,32 +33,36 @@
                     </div>
 
                     <div class="row">
-                        <label for="priority_id" class="form-label">Priority:</label>
-                        <select class="form-select" id="priority_id" name="priority_id">
-                            <option value="">Wybierz...</option>
+                        <label for="priority_id" class="form-label">@lang('jobs.Priority'):</label>
+                        <select class="form-control is-invalid" id="priority_id" name="priority_id">
+                            <option value="">@lang('general.Choose')...</option>
                             @foreach ($priorities as $priority)
                                 @if (old('priority_id', $job->priority_id) == $priority->id)
-                                    <option selected value="{{ $priority->id }}">{{ $priority->slug }}</option>
+                                    <option selected value="{{ $priority->id }}">@lang('slug.'.$priority->slug)</option>
                                 @else
-                                    <option value="{{ $priority->id }}">{{ $priority->slug }}</option>
+                                    <option value="{{ $priority->id }}">@lang('slug.'.$priority->slug)</option>
                                 @endif
                             @endforeach
                         </select>
+
+                        @error('priority_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="row mb-1">
-                        <label for="deadline" class="form-label">Deadline: </label>
-                        <input type="datetime-local" name="deadline" id="deadline" class="form-input" value="{{ old('deadline', Carbon\Carbon::parse($job->deadline)->format('Y-m-d\TH:i')) }}">
+                        <label for="deadline" class="form-label">@lang('jobs.Deadline'): </label>
+                        <input type="datetime-local" name="deadline" id="deadline" class="form-control is-invalid" value="{{ old('deadline', Carbon\Carbon::parse($job->deadline)->format('Y-m-d\TH:i')) }}">
 
                         @error('deadline')
-                            <div>{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                              Tags:
+                                @lang('jobs.Tags'):
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach ($tags as $tag)
@@ -78,7 +82,7 @@
                                             @endif
                                         />
                                         <span class="badge" style="background-color: {{ $tag->color }};">
-                                            <label for="{{ $tag->tag }}" class="form-label">{{ $tag->tag }}</label>
+                                            <label for="{{ $tag->tag }}" class="form-label">@lang('tags.'.$tag->tag)</label>
                                         </span>
                                     </li>
                                 @endforeach
@@ -87,8 +91,8 @@
                     </div>
 
                     <div class="d-flex justify-content-between mt-1">
-                        <a href="{{ route('jobs.details', ['id' => $job]) }}" class="btn btn-primary" role="button">Wstecz</a>
-                        <button type="submit" class="btn btn-primary">Zapisz</button>
+                        <a href="{{ route('jobs.details', ['id' => $job]) }}" class="btn btn-primary" role="button">@lang('general.Back')</a>
+                        <button type="submit" class="btn btn-primary">@lang('general.Save')</button>
                     </div>
                 </form>
             </div>

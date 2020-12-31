@@ -2,12 +2,17 @@
 
 return [
 
-'title' => 'tytuł',
-'priority' => 'priorytet',
-'deadline' => 'ostateczny termin',
-'executed' => 'wykonano',
-'tags' => 'etykiety',
-'Jobs description' => 'Opis zadania',
+'Title' => 'Tytuł',
+'Priority' => 'Priorytet',
+'Deadline' => 'Ostateczny termin',
+'Executed' => 'Wykonano',
+'Tags' => 'Etykiety',
+'Description' => 'Opis zadania',
 'Details' => 'Szczegóły',
+'Created at' => 'Utworzono',
+'Last edited' => 'Ostatnia edycja',
+'Status' => 'Status',
+'Executed' => 'Wykonane',
+'Not executed' => 'Niewykonane',
 
 ];
