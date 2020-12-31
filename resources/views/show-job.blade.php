@@ -30,16 +30,16 @@
             </div>
             <div class="col">
                 <h2>@lang('jobs.Details'):</h2>
-                <p>Deadline: {{ $job->deadline }}</p>
-                <p>Status:
+                <p>@lang('jobs.Deadline'): {{ $job->deadline }}</p>
+                <p>@lang('jobs.Status'):
                     @if ($job->executed === 1)
-                        Wykonane
+                        @lang('jobs.Executed')
                      @else
-                         Niewykonane
+                        @lang('jobs.Not executed')
                     @endif
                 </p>
-                <p>Utworzono: {{ $job->created_at }}</p>
-                <p>Ostatnia edycja: {{ $job->updated_at }}</p>
+                <p>@lang('jobs.Created at'): {{ $job->created_at }}</p>
+                <p>@lang('jobs.Last edited'): {{ $job->updated_at }}</p>
             </div>
         </div>
         <div class="row">
@@ -50,16 +50,16 @@
 
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          Wstecz
+                            @lang('general.Back')
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop">
-                          <li><a class="dropdown-item" href="{{ route('jobs.calendar', ['datetime' => $job->deadline]) }}">Kalendarz</a></li>
-                          <li><a class="dropdown-item" href="{{ route('jobs.list') }}">Lista</a></li>
+                          <li><a class="dropdown-item" href="{{ route('jobs.calendar', ['datetime' => $job->deadline]) }}">@lang('general.Calendar')</a></li>
+                          <li><a class="dropdown-item" href="{{ route('jobs.list') }}">@lang('general.List')</a></li>
                         </ul>
                     </div>
 
-                    <a href="{{ route('jobs.edit', ['id' => $job]) }}" class="btn btn-primary ms-auto me-1" role="button">Edytuj</a>
-                    <button type="submit" class="btn btn-danger">USUŃ</button>
+                    <a href="{{ route('jobs.edit', ['id' => $job]) }}" class="btn btn-primary ms-auto me-1" role="button">@lang('general.Edit')</a>
+                    <button type="submit" class="btn btn-danger">@lang('general.DELETE')</button>
                 </form>
             </div>
         </div>

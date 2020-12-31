@@ -76,9 +76,6 @@ class JobController extends Controller
     {
         $data = collect($jobRequest->validated());
 
-        dd($jobRequest);
-
-
         $data->put('user_id', 1);
         $data->put('executed', false);
 
@@ -112,8 +109,6 @@ class JobController extends Controller
     public function update(Request $request, JobRequest $jobRequest) {
 
         $id = $request->id;
-
-        dd($jobRequest);
 
         try {
 
@@ -161,8 +156,6 @@ class JobController extends Controller
             Job::destroy($id);
 
         } catch(Exception $e) {
-
-            dd($e);
 
             return redirect()->back()->with('error', 'Blad!');
         }

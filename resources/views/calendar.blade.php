@@ -6,17 +6,17 @@
             <div class="row">
                 <nav aria-label="breadcrumb" class="d-flex align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('jobs.list') }}">List</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+                        <li class="breadcrumb-item"><a href="{{ route('jobs.list') }}">@lang('general.List')</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@lang('general.Calendar')</li>
                     </ol>
                 </nav>
             </div>
             <div class="row">
                 <div class="col-md-6 d-flex self-align-center"><h2>{{ $datetime->localeMonth }} {{ $datetime->year }}</h2></div>
                 <div class="col md-6 mb-1 d-flex justify-content-end">
-                    <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->subMonth()]) }}" class="btn btn-primary me-1" role="button">-1 miesiac</a>
-                    <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->now()]) }}" class="btn btn-primary me-1" role="button">Dzisiaj</a>
-                    <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->addMonth()]) }}" class="btn btn-primary" role="button">+1 miesiac</a>
+                    <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->subMonth()]) }}" class="btn btn-primary me-1" role="button">-1 @lang('general.month')</a>
+                    <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->now()]) }}" class="btn btn-primary me-1" role="button">@lang('general.Today')</a>
+                    <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->addMonth()]) }}" class="btn btn-primary" role="button">+1 @lang('general.month')</a>
                 </div>
             </div>
 

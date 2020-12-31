@@ -7,8 +7,8 @@
                 <div class="col-md-11 d-flex align-self-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">List</li>
-                            <li class="breadcrumb-item"><a href="{{ route('jobs.calendar') }}">Calendar</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@lang('general.List')</li>
+                            <li class="breadcrumb-item"><a href="{{ route('jobs.calendar') }}">@lang('general.Calendar')</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -27,11 +27,11 @@
                     <tr>
                         <th scope="col">Id</th>
                         {{-- <th scope="col">User_id</th> --}}
-                        <th scope="col">@lang('jobs.title')</th>
-                        <th scope="col">@lang('jobs.priority')</th>
-                        <th scope="col">@lang('jobs.deadline')</th>
-                        <th scope="col">@lang('jobs.tags')</th>
-                        <th scope="col">@lang('jobs.executed')</th>
+                        <th scope="col">@lang('jobs.Title')</th>
+                        <th scope="col">@lang('jobs.Priority')</th>
+                        <th scope="col">@lang('jobs.Deadline')</th>
+                        <th scope="col">@lang('jobs.Tags')</th>
+                        <th scope="col">@lang('jobs.Executed')</th>
                     </tr>
                     </thead>
                     <tbody>
