@@ -33,7 +33,7 @@
 
                         <div class="row">
                             <label for="priority_id" class="form-label">@lang('jobs.Priority'):</label>
-                            <select class="form-select" id="priority_id" name="priority_id">
+                            <select class="form-control is-invalid" id="priority_id" name="priority_id">
                                 <option value="">@lang('general.Choose')...</option>
                                 @foreach ($priorities as $priority)
                                     @if (old('priority_id') == $priority->id)
@@ -43,6 +43,10 @@
                                     @endif
                                 @endforeach
                             </select>
+
+                            @error('priority_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="row mb-3">
