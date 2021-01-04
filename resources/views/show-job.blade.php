@@ -25,7 +25,7 @@
         </div>
         <div class="row f-flex mt-4">
             <div class="col">
-                <h2>@lang('jobs.Jobs description'):</h2>
+                <h2>@lang('jobs.Description'):</h2>
                 <p>{{ $job->description }}</p>
             </div>
             <div class="col">
