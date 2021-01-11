@@ -1,8 +1,8 @@
-@extends('layouts.default', ['title' => 'Job details'])
-
-@section('content')
-<div class="container-bg">
-    <div class="container">
+<x-default-layout>
+    <x-slot name="title">
+        Job details
+    </x-slot>
+    <x-auth-card>
         @if (session('error'))
         <div class="alert alert-warning" role="alert">
             {{session('error')}}
@@ -63,6 +63,5 @@
                 </form>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    </x-auth-card>
+</x-default-layout>

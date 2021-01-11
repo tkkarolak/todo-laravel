@@ -1,8 +1,11 @@
-@extends('layouts.default', ['title' => 'Calendar'])
-
-@section('content')
+<x-default-layout>
+    <x-slot name="title">
+        Calendar
+    </x-slot>
+    <x-auth-card>
+{{-- @section('content')
     <div class="container-bg">
-        <div class="container">
+        <div class="container"> --}}
             <div class="row">
                 <nav aria-label="breadcrumb" class="d-flex align-self-center">
                     <ol class="breadcrumb">
@@ -68,7 +71,9 @@
                     </table>
                 </div>
             </div>
-        </div>
+        {{-- </div>
     </div>
-@endsection
+@endsection --}}
+    </x-auth-card>
+</x-default-layout>
 
