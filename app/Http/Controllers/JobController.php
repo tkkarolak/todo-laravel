@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -58,6 +59,7 @@ class JobController extends Controller
         $job = Job::where('id', $id)
         ->with('priority')
         ->with('tags')
+        ->with('user')
         ->first();
 
         return view('show-job', ['id' => $id, 'job' => $job]);
@@ -76,7 +78,9 @@ class JobController extends Controller
     {
         $data = collect($jobRequest->validated());
 
-        $data->put('user_id', 1);
+        $id = Auth::id();
+
+        $data->put('user_id', $id);
         $data->put('executed', false);
 
         try {

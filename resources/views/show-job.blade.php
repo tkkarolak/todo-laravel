@@ -40,6 +40,7 @@
                 </p>
                 <p>@lang('jobs.Created at'): {{ $job->created_at }}</p>
                 <p>@lang('jobs.Last edited'): {{ $job->updated_at }}</p>
+                <p>@lang('jobs.Author'): {{ $job->user->name }}</p>
             </div>
         </div>
         <div class="row">
