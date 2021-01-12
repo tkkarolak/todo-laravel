@@ -1,6 +1,6 @@
 <x-default-layout>
     <x-slot name="title">
-        Calendar
+        @lang('general.Calendar')
     </x-slot>
     <x-auth-card>
 {{-- @section('content')

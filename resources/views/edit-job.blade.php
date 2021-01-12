@@ -1,6 +1,6 @@
 <x-default-layout>
     <x-slot name="title">
-        Edit Job
+        @lang('general.Job Edit')
     </x-slot>
     <x-auth-card>
         @if (session('error'))

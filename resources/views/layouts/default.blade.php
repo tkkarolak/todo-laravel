@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
-        <title>{{$title}}</title>
-        <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
+        <title>{{ $title }}</title>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
     </head>
 
     <body>
@@ -19,7 +19,7 @@
                 <div class="col-md-3 d-flex align-self-center justify-content-center">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-sm btn-header">Logout</button>
+                        <button type="submit" class="btn btn-sm btn-header">@lang('general.Logout')</button>
                     </form>
                 </div>
             </div>

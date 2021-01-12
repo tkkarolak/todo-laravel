@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">
-        Reset password
+        @lang('general.Reset password')
     </x-slot>
     <x-auth-card>
 
@@ -15,21 +15,21 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <label for="email">Email</label>
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <label for="password">@lang('auth.password-label')</label>
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <label for="password_confirmation">@lang('auth.confirm password-label')</label>
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                     type="password"
@@ -38,7 +38,8 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Reset Password') }}
+                    {{-- {{ __('Reset Password') }} --}}
+                    @lang('general.Password Reset')
                 </x-button>
             </div>
         </form>
