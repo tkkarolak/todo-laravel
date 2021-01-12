@@ -1,6 +1,6 @@
 <x-default-layout>
     <x-slot name="title">
-        Calendar
+        @lang('general.Create job')
     </x-slot>
     <x-auth-card>
         @if (session('error'))

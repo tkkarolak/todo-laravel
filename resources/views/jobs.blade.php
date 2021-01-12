@@ -1,6 +1,6 @@
 <x-default-layout>
     <x-slot name="title">
-        To Do List
+        @lang('general.To Do List')
     </x-slot>
     <x-auth-card>
         <div class="row mb-1">

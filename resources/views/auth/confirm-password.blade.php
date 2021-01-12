@@ -1,11 +1,12 @@
 <x-guest-layout>
     <x-slot name="title">
-        Confirm password
+        @lang('general.confirm password')
     </x-slot>
     <x-auth-card>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+            @lang('auth.confirm pass message')
+            {{-- {{ __('This is a secure area of the application. Please confirm your password before continuing.') }} --}}
         </div>
 
         <!-- Validation Errors -->
@@ -16,7 +17,7 @@
 
             <!-- Password -->
             <div>
-                <x-label for="password" :value="__('Password')" />
+                <label for="password">@lang('auth.password')</label>
 
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
@@ -26,6 +27,7 @@
 
             <div class="flex justify-end mt-4">
                 <x-button>
+                    @lang('general.Confirm')
                     {{ __('Confirm') }}
                 </x-button>
             </div>
