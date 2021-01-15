@@ -7,6 +7,16 @@ use App\Models\Job;
 use App\Models\Priority;
 use App\Models\Tags;
 use App\Models\User;
+use App\Services\Jobs\JobAcceptService;
+use App\Services\Jobs\JobDestroyService;
+use App\Services\Jobs\JobStoreService;
+use App\Services\Jobs\JobUpdateService;
+use App\Services\JobService;
+use App\ViewModels\Jobs\JobCalendarViewModel;
+use App\ViewModels\Jobs\JobCreateViewModel;
+use App\ViewModels\Jobs\JobEditViewModel;
+use App\ViewModels\Jobs\JobIndexViewModel;
+use App\ViewModels\Jobs\JobShowViewModel;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,152 +29,70 @@ class JobController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(JobIndexViewModel $jobIndexViewModel)
     {
 
-        $jobs = Job::with('priority')->with('tags')->get();
-
-        return view('jobs', ['jobs' => $jobs]);
+        return view('jobs', $jobIndexViewModel);
     }
 
-    public function calendar(Request $request)
+    public function calendar(JobCalendarViewModel $jobCalendarViewModel)
     {
-        if (is_null($request)) {
-            $datetime = Carbon::now();
+        return view('calendar', $jobCalendarViewModel);
+    }
+
+    public function show (JobShowViewModel $jobShowViewModel)
+    {
+        return view('show-job', $jobShowViewModel);
+    }
+
+    public function create(JobCreateViewModel $jobCreateViewModel)
+    {
+        return view('create-job', $jobCreateViewModel);
+    }
+
+    public function store(JobService $jobService, JobRequest $jobRequest)
+    {
+        if ($jobService->store($jobRequest) == false) {
+            return redirect()->back()->with('error', 'Blad!');
+
         } else {
-            $datetime = Carbon::parse($request->datetime);
+
+            return redirect('jobs/list')->with('success', 'Utworzono zadanie!');
+
         }
-
-        $events = Job::whereYear('deadline', $datetime->year)
-            ->whereMonth('deadline', $datetime->month)
-            ->with('priority')
-            ->get();
-
-        $events = $events->map(function ($event) {
-            return [
-                'title' => $event->title,
-                'deadline' => substr($event->deadline, 0, 10),
-                'slug' => $event->priority->slug,
-                'id' => $event->id,
-            ];
-        });
-
-        return view('calendar', ['datetime' => $datetime, 'events' => $events]);
     }
 
-    public function show (Request $request)
+    public function edit(JobEditViewModel $jobEditViewModel)
     {
-        $id = $request->id;
 
-        $job = Job::where('id', $id)
-        ->with('priority')
-        ->with('tags')
-        ->with('user')
-        ->first();
+        return view('edit-job', $jobEditViewModel);
 
-        return view('show-job', ['id' => $id, 'job' => $job]);
     }
 
-    public function create() {
-
-        $priorities = Priority::all();
-        $tags = Tags::all();
-
-
-        return view('create-job', ['priorities' => $priorities, 'tags' => $tags]);
-    }
-
-    public function store(JobRequest $jobRequest)
+    public function update(JobService $jobService, Request $request, JobRequest $jobRequest)
     {
-        $data = collect($jobRequest->validated());
-
-        $id = Auth::id();
-
-        $data->put('user_id', $id);
-        $data->put('executed', false);
-
-        try {
-            Job::create($data->toArray())->tags()->attach($jobRequest->tag);
-
-        } catch(Exception $e) {
+        if ($jobService->update($request, $jobRequest) == false) {
 
             return redirect()->back()->with('error', 'Blad!');
-        }
+        } else {
 
-        return redirect('jobs/list')->with('success', 'Utworzono zadanie!');
+            return redirect('jobs/list')->with('success', 'Edytowano zadanie!');
+        }
     }
 
-    public function edit(Request $request) {
-
-        $id = $request->id;
-
-        $job = Job::where('id', $id)
-        ->with('priority')
-        ->with('tags')
-        ->first();
-
-        $priorities = Priority::all();
-        $tags = Tags::all();
-
-        return view('edit-job',['id' => $id, 'job' => $job, 'priorities' => $priorities, 'tags' => $tags]);
-
-    }
-
-    public function update(Request $request, JobRequest $jobRequest) {
-
-        $id = $request->id;
-
-        try {
-
-            $updatedjob = Job::where('id', $id)->first();
-            $updatedjob->update($jobRequest->validated());
-            $updatedjob->tags()->sync($jobRequest->tag);
-
-
-        } catch(Exception $e) {
-
-            return redirect()->back()->with('error', 'Blad!');
-        }
-
-        return redirect('jobs/list')->with('success', 'Edytowano zadanie!');
-
-    }
-
-    public function accept(Request $request) {
-
-        $id = $request->id;
-        $job = Job::where('id', $id)->first();
-
-        $executed = $job->executed;
-
-        if ($executed == 0) {
-            $executed = 1;
-        }
-        else {
-            $executed = 0;
-        }
-
-        Job::where('id', $id)
-        ->update(['executed' => $executed]);
+    public function accept(JobService $jobService, Request $request)
+    {
+        $jobService->accept($request);
 
         return redirect('jobs/list');
-
     }
 
-    public function destroy(Request $request) {
-
-        $id = $request->id;
-
-        try {
-
-            Job::destroy($id);
-
-        } catch(Exception $e) {
-
+    public function destroy(JobService $jobService, Request $request)
+    {
+        if ($jobService->destroy($request) == false) {
             return redirect()->back()->with('error', 'Blad!');
+        } else {
+            return redirect('jobs/list')->with('success', 'Usunieto zadanie!');
         }
-
-        return redirect('jobs/list')->with('success', 'Usunieto zadanie!');
-
     }
 }
