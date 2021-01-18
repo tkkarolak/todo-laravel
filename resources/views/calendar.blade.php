@@ -3,9 +3,6 @@
         @lang('general.Calendar')
     </x-slot>
     <x-auth-card>
-{{-- @section('content')
-    <div class="container-bg">
-        <div class="container"> --}}
             <div class="row">
                 <nav aria-label="breadcrumb" class="d-flex align-self-center">
                     <ol class="breadcrumb">
@@ -15,7 +12,7 @@
                 </nav>
             </div>
             <div class="row">
-                <div class="col-md-6 d-flex self-align-center"><h2>{{ $datetime->localeMonth }} {{ $datetime->year }}</h2></div>
+                <div class="col-md-6"><h2>{{ $datetime->localeMonth }} {{ $datetime->year }}</h2></div>
                 <div class="col md-6 mb-1 d-flex justify-content-end">
                     <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->subMonth()]) }}" class="btn btn-primary me-1" role="button">-1 @lang('general.month')</a>
                     <a href="{{ route('jobs.calendar', ['datetime' => $datetime->copy()->now()]) }}" class="btn btn-primary me-1" role="button">@lang('general.Today')</a>
@@ -71,9 +68,5 @@
                     </table>
                 </div>
             </div>
-        {{-- </div>
-    </div>
-@endsection --}}
     </x-auth-card>
 </x-default-layout>
-
