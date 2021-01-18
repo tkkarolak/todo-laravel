@@ -16,7 +16,7 @@
 
                     <div class="row">
                         <label for="title" class="form-label">@lang('jobs.Title'): </label>
-                        <input type="text" class="form-control is-invalid" name="title" id="title" value="{{ old('title', $job->title)}}">
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title', $job->title)}}">
 
                         @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -25,7 +25,7 @@
 
                     <div class="row">
                         <label for="description" class="form-label">@lang('jobs.Description'): </label>
-                        <textarea type="text" class="form-control is-invalid" name="description" id="description"> {{ old('description', $job->description)}}</textarea>
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description"> {{ old('description', $job->description)}}</textarea>
 
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -34,7 +34,7 @@
 
                     <div class="row">
                         <label for="priority_id" class="form-label">@lang('jobs.Priority'):</label>
-                        <select class="form-control is-invalid" id="priority_id" name="priority_id">
+                        <select class="form-control @error('priority_id') is-invalid @enderror" id="priority_id" name="priority_id">
                             <option value="">@lang('general.Choose')...</option>
                             @foreach ($priorities as $priority)
                                 @if (old('priority_id', $job->priority_id) == $priority->id)
@@ -52,7 +52,7 @@
 
                     <div class="row mb-1">
                         <label for="deadline" class="form-label">@lang('jobs.Deadline'): </label>
-                        <input type="datetime-local" name="deadline" id="deadline" class="form-control is-invalid" value="{{ old('deadline', Carbon\Carbon::parse($job->deadline)->format('Y-m-d\TH:i')) }}">
+                        <input type="datetime-local" name="deadline" id="deadline" class="form-control @error('deadline') is-invalid @enderror" value="{{ old('deadline', Carbon\Carbon::parse($job->deadline)->format('Y-m-d\TH:i')) }}">
 
                         @error('deadline')
                             <div class="invalid-feedback">{{ $message }}</div>

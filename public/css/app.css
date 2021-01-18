@@ -35262,10 +35262,8 @@ fieldset:disabled .btn {
 }
 
 body {
-  background-image: url(/images/bodybg.jpg?a69f343a068313ea0a37f2c202274832);
   background-size: 300px;
-  background-color: burlywood;
-  background-repeat: repeat;
+  background-color: #FFE0B2;
 }
 
 .container-h {
