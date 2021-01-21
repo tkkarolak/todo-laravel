@@ -12,8 +12,8 @@
             <div class="col-10">
                 <h1>{{ $job->title }}</h1>
             </div>
-            <div class="col-2 d-flex justify-content-end">
-                <h1><span class="badge priority-{{ $job->priority->slug }}">@lang('slug.'.$job->priority->slug)</span></h1>
+            <div class="col-2 d-flex align-self-center justify-content-end">
+                <span style="font-size: 20px" class="badge priority-{{ $job->priority->slug }}">@lang('slug.'.$job->priority->slug)</span>
             </div>
         </div>
         <div class="row">
